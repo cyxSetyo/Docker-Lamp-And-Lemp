@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./public:/var/www/public
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: lemp_docker
+      MYSQL_USER: cyx
+      MYSQL_PASSWORD: 1411
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+
+  php:
+    image: php:8.1-fpm
+    volumes:
+      - ./public:/var/www/public
